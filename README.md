@@ -1,14 +1,11 @@
-# Deprecated
-
-Due to lack of maintainers and access, this library is no longer maintained.
-There is a new actively maintained fork: https://github.com/prometheus-community/pro-bing
-
 # go-ping
-[![PkgGoDev](https://pkg.go.dev/badge/github.com/go-ping/ping)](https://pkg.go.dev/github.com/go-ping/ping)
+[![PkgGoDev](https://[pkg.go.dev/badge/github.com/go-ping/ping)](https://pkg.go.dev/badge/github.com/aanantaco/ping)
 [![Circle CI](https://circleci.com/gh/go-ping/ping.svg?style=svg)](https://circleci.com/gh/go-ping/ping)
 
-A simple but powerful ICMP echo (ping) library for Go, inspired by
-[go-fastping](https://github.com/tatsushid/go-fastping).
+
+
+A simple but powerful ICMP echo (ping) library for Go, forked from
+[ping](https://github.com/go-ping/ping).
 
 Here is a very simple example that sends and receives three packets:
 
