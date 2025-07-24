@@ -1,8 +1,8 @@
 
 BASE_IMAGE		    := scratch
 
-GOLANG_BUILD_IMAGE	?= golang:1.24.2-bullseye
-GOLANG_LINT_IMAGE	:= golangci/golangci-lint:v2.0.2
+GOLANG_BUILD_IMAGE  ?= docker.io/library/golang:1.24.2-bullseye
+GOLANG_LINT_IMAGE   := docker.io/golangci/golangci-lint:v2.0.2
 SQLC_IMAGE		    := sqlc/sqlc:1.29.0
 
 APP					:= ping
@@ -21,7 +21,6 @@ ifeq ($(ENVIRONMENT),local)
 	go mod download
 else
 
-	DOCKER_BUILDKIT=1 \
 	docker run --rm \
 	-v $(PWD):/usr/src/app \
 	-w /usr/src/app \
@@ -39,7 +38,7 @@ go-generate: ## Runs `go generate` within a docker container
 ifeq ($(ENVIRONMENT),local)
 	go generate ./...
 else
-	DOCKER_BUILDKIT=1 \
+
 	docker run --rm \
 	-v $(PWD):/usr/src/app \
 	-w /usr/src/app \
@@ -57,12 +56,12 @@ go-fmt: ## Runs `go fmt` within a docker container
 ifeq ($(ENVIRONMENT),local)
 	go fmt ./...
 else
-	DOCKER_BUILDKIT=1 \
+
 	docker run --rm \
 	-v $(PWD):/usr/src/app \
 	-w /usr/src/app \
-	$(GOLANG_BUILD_IMAGE) \
 	--entrypoint "/bin/bash" \
+	$(GOLANG_BUILD_IMAGE) \
 	-c "cd /usr/src/app && go fmt ./..."
 
 endif
@@ -76,7 +75,7 @@ go-lint: ## Runs `golangci-lint run` with more than 60 different linters using g
 ifeq ($(ENVIRONMENT),local)
 	golangci-lint run
 else
-	DOCKER_BUILDKIT=1 \
+
 	docker run --rm \
 	-e GOPACKAGESPRINTGOLISTERRORS=1 \
 	-e GO111MODULE=on \
@@ -99,11 +98,10 @@ ifeq ($(ENVIRONMENT),local)
 	go test -failfast -cover -coverprofile=coverage.txt -v -p 8 -count=1 ./...
 else
 
-	DOCKER_BUILDKIT=1 \
 	docker run --rm \
 	-v $(PWD):/usr/src/app \
 	-w /usr/src/app \
-	--entrypoint=bash \
+	--entrypoint "/bin/bash" \
 	$(GOLANG_BUILD_IMAGE) \
 	-c "go test -failfast -cover -coverprofile=coverage.txt -v -p 8 -count=1 ./..."
 
@@ -120,14 +118,13 @@ ifeq ($(ENVIRONMENT),local)
 	go test -failfast -cover -coverprofile=coverage_integration.txt -v -count=1 ./...
 else
 
-	DOCKER_BUILDKIT=1 \
 	docker run --rm \
 	--add-host host.docker.internal:host-gateway \
 	-e RUN_TEST="INTEGRATION" \
 	-e DB_CON_INTEGRATION="host=host.docker.internal port=54321 user=postgres password=postgres dbname=postgres sslmode=disable pool_max_conns=2" \
 	-v $(PWD):/usr/src/app \
 	-w /usr/src/app \
-	--entrypoint=bash \
+	--entrypoint "/bin/bash" \
 	$(GOLANG_BUILD_IMAGE) \
 	-c "go install gotest.tools/gotestsum@latest && cd /usr/src/app && gotestsum --junitfile junit.xml --format pkgname-and-test-fails -- -failfast -cover -coverprofile=coverage_integration.txt -v -p 1 -count=1 ./..."
 
@@ -143,11 +140,10 @@ ifeq ($(ENVIRONMENT),local)
 	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -v -o $(APP) -ldflags '-s -w -X main.version=${VERSION_HASH}' cmd/$(APP)/main.go
 else
 
-	DOCKER_BUILDKIT=1 \
 	docker run --rm \
 	-v $(PWD):/usr/src/app \
 	-w /usr/src/app \
-	--entrypoint=bash \
+	--entrypoint "/bin/bash" \
 	$(GOLANG_BUILD_IMAGE) \
 	-c "CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -v -o $(APP) -ldflags '-s -w -X main.version=$(VERSION_HASH)' cmd/$(APP)/main.go"
 
@@ -157,7 +153,7 @@ endif
 
 .PHONY: go-run-bash
 go-run-bash:  ## Returns an interactive shell in the golang docker image - useful for debugging
-	DOCKER_BUILDKIT=1 \
+
 	docker run -it --rm \
 	--memory=4g \
 	-v $(PWD):/usr/src/app \
