@@ -361,8 +361,8 @@ func TestNewPingerInvalid(t *testing.T) {
 	_, err = NewPinger("wtf.invalid.")
 	AssertError(t, err, "wtf.invalid.")
 
-	_, err = NewPinger(":::1")
-	AssertError(t, err, ":::1")
+	_, err = NewPinger("999.999.999.999")
+	AssertError(t, err, "999.999.999.999")
 
 	_, err = NewPinger("ipv5.google.com")
 	AssertError(t, err, "ipv5.google.com")
