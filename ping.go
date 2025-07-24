@@ -50,7 +50,7 @@
 // If it receives a response, it calls the OnRecv callback. When it's finished,
 // it calls the OnFinish callback.
 //
-// For a full ping example, see "cmd/ping/ping.go".
+// For a full ping example, see "cmd/ping/main.go".
 package ping
 
 import (
