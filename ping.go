@@ -418,6 +418,7 @@ func (p *Pinger) Run() error {
 	defer func() {
 		if err := conn.Close(); err != nil {
 			// Log the error or handle it appropriately
+			log.Panicln(err)
 		}
 	}()
 
