@@ -1,11 +1,10 @@
 # go-ping
-[![PkgGoDev](https://[pkg.go.dev/badge/github.com/go-ping/ping)](https://pkg.go.dev/badge/github.com/aanantaco/ping)
-[![Circle CI](https://circleci.com/gh/go-ping/ping.svg?style=svg)](https://circleci.com/gh/go-ping/ping)
-
+[![PkgGoDev](https://[pkg.go.dev/badge/github.com/aanantaco/ping)](https://pkg.go.dev/badge/github.com/aanantaco/ping)
+[![PR Lint / Test / Build](https://github.com/aanantaco/ping/actions/workflows/pr-lint-test-build.yaml/badge.svg)](https://github.com/aanantaco/ping/actions/workflows/pr-lint-test-build.yaml)
 
 
 A simple but powerful ICMP echo (ping) library for Go, forked from
-[ping](https://github.com/go-ping/ping).
+[ping](https://github.com/aanantaco/ping).
 
 Here is a very simple example that sends and receives three packets:
 
@@ -71,18 +70,18 @@ in which case it calls the `OnDuplicateRecv` callback. When it's
 finished, it calls the `OnFinish` callback.
 
 For a full ping example, see
-[cmd/ping/ping.go](https://github.com/go-ping/ping/blob/master/cmd/ping/ping.go).
+[cmd/ping/main.go](https://github.com/aanantaco/ping/blob/master/cmd/ping/ping.go).
 
 ## Installation
 
 ```
-go get -u github.com/go-ping/ping
+go get -u github.com/aanantaco/ping
 ```
 
 To install the native Go ping executable:
 
 ```bash
-go get -u github.com/go-ping/ping/...
+go get -u github.com/aanantaco/ping/...
 $GOPATH/bin/ping
 ```
 
@@ -140,4 +139,4 @@ to the Gophers Slack org.
 
 ## Contributing
 
-Refer to [CONTRIBUTING.md](https://github.com/go-ping/ping/blob/master/CONTRIBUTING.md)
+Refer to [CONTRIBUTING.md](https://github.com/aanantaco/ping/blob/master/CONTRIBUTING.md)
