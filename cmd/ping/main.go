@@ -1,4 +1,3 @@
-// Deprecated: This package is no longer maintained.
 package main
 
 import (
