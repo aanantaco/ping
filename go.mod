@@ -3,7 +3,6 @@ module github.com/aanantaco/ping
 go 1.24.1
 
 require (
-	github.com/go-ping/ping v1.2.0
 	github.com/google/uuid v1.6.0
 	golang.org/x/net v0.42.0
 	golang.org/x/sync v0.16.0
