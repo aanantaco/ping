@@ -3,7 +3,6 @@ package ping
 import (
 	"bytes"
 	"errors"
-	"fmt"
 	"net"
 	"runtime/debug"
 	"sync/atomic"
