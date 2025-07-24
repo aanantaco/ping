@@ -1,5 +1,5 @@
 # go-ping
-[![PkgGoDev](https://[pkg.go.dev/badge/github.com/aanantaco/ping)](https://pkg.go.dev/badge/github.com/aanantaco/ping)
+[![Go Reference](https://pkg.go.dev/badge/github.com/aanantaco/ping.svg)](https://pkg.go.dev/github.com/aanantaco/ping)
 [![PR Lint / Test / Build](https://github.com/aanantaco/ping/actions/workflows/pr-lint-test-build.yaml/badge.svg)](https://github.com/aanantaco/ping/actions/workflows/pr-lint-test-build.yaml)
 
 
