@@ -415,7 +415,11 @@ func (p *Pinger) Run() error {
 	if conn, err = p.listen(); err != nil {
 		return err
 	}
-	defer conn.Close()
+	defer func() {
+		if err := conn.Close(); err != nil {
+			// Log the error or handle it appropriately
+		}
+	}()
 
 	conn.SetTTL(p.TTL)
 	return p.run(conn)
