@@ -26,7 +26,7 @@ func TestProcessPacket(t *testing.T) {
 	currentUUID := pinger.getCurrentTrackerUUID()
 	uuidEncoded, err := currentUUID.MarshalBinary()
 	if err != nil {
-		t.Fatal(fmt.Sprintf("unable to marshal UUID binary: %s", err))
+		t.Fatalf("unable to marshal UUID binary: %s", err)
 	}
 	data := append(timeToBytes(time.Now()), uuidEncoded...)
 	if remainSize := pinger.Size - timeSliceLength - trackerLength; remainSize > 0 {
@@ -69,7 +69,7 @@ func TestProcessPacket_IgnoreNonEchoReplies(t *testing.T) {
 
 	currentUUID, err := pinger.getCurrentTrackerUUID().MarshalBinary()
 	if err != nil {
-		t.Fatal(fmt.Sprintf("unable to marshal UUID binary: %s", err))
+		t.Fatalf("unable to marshal UUID binary: %s", err)
 	}
 	data := append(timeToBytes(time.Now()), currentUUID...)
 	if remainSize := pinger.Size - timeSliceLength - trackerLength; remainSize > 0 {
@@ -112,7 +112,7 @@ func TestProcessPacket_IDMismatch(t *testing.T) {
 
 	currentUUID, err := pinger.getCurrentTrackerUUID().MarshalBinary()
 	if err != nil {
-		t.Fatal(fmt.Sprintf("unable to marshal UUID binary: %s", err))
+		t.Fatalf("unable to marshal UUID binary: %s", err)
 	}
 	data := append(timeToBytes(time.Now()), currentUUID...)
 	if remainSize := pinger.Size - timeSliceLength - trackerLength; remainSize > 0 {
@@ -154,7 +154,7 @@ func TestProcessPacket_TrackerMismatch(t *testing.T) {
 
 	testUUID, err := uuid.New().MarshalBinary()
 	if err != nil {
-		t.Fatal(fmt.Sprintf("unable to marshal UUID binary: %s", err))
+		t.Fatalf("unable to marshal UUID binary: %s", err)
 	}
 	data := append(timeToBytes(time.Now()), testUUID...)
 	if remainSize := pinger.Size - timeSliceLength - trackerLength; remainSize > 0 {
@@ -192,7 +192,7 @@ func TestProcessPacket_LargePacket(t *testing.T) {
 
 	currentUUID, err := pinger.getCurrentTrackerUUID().MarshalBinary()
 	if err != nil {
-		t.Fatal(fmt.Sprintf("unable to marshal UUID binary: %s", err))
+		t.Fatalf("unable to marshal UUID binary: %s", err)
 	}
 	data := append(timeToBytes(time.Now()), currentUUID...)
 	if remainSize := pinger.Size - timeSliceLength - trackerLength; remainSize > 0 {
@@ -545,7 +545,7 @@ func BenchmarkProcessPacket(b *testing.B) {
 
 	currentUUID, err := pinger.getCurrentTrackerUUID().MarshalBinary()
 	if err != nil {
-		b.Fatal(fmt.Sprintf("unable to marshal UUID binary: %s", err))
+		b.Fatalf("unable to marshal UUID binary: %s", err)
 	}
 	data := append(timeToBytes(time.Now()), currentUUID...)
 	if remainSize := pinger.Size - timeSliceLength - trackerLength; remainSize > 0 {
@@ -595,7 +595,7 @@ func TestProcessPacket_IgnoresDuplicateSequence(t *testing.T) {
 	currentUUID := pinger.getCurrentTrackerUUID()
 	uuidEncoded, err := currentUUID.MarshalBinary()
 	if err != nil {
-		t.Fatal(fmt.Sprintf("unable to marshal UUID binary: %s", err))
+		t.Fatalf("unable to marshal UUID binary: %s", err)
 	}
 	data := append(timeToBytes(time.Now()), uuidEncoded...)
 	if remainSize := pinger.Size - timeSliceLength - trackerLength; remainSize > 0 {
