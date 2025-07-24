@@ -4,7 +4,7 @@
 
 
 A simple but powerful ICMP echo (ping) library for Go, forked from
-[ping](https://github.com/aanantaco/ping).
+[ping](https://github.com/go-ping/ping).
 
 Here is a very simple example that sends and receives three packets:
 
