@@ -70,7 +70,7 @@ in which case it calls the `OnDuplicateRecv` callback. When it's
 finished, it calls the `OnFinish` callback.
 
 For a full ping example, see
-[cmd/ping/main.go](https://github.com/aanantaco/ping/blob/master/cmd/ping/ping.go).
+[cmd/ping/main.go](https://github.com/aanantaco/ping/blob/master/cmd/ping/main.go).
 
 ## Installation
 
