@@ -1,7 +1,7 @@
 
 BASE_IMAGE		    := scratch
 
-GOLANG_BUILD_IMAGE  ?= docker.io/library/golang:1.24.2-bullseye
+GOLANG_BUILD_IMAGE  ?= docker.io/library/golang:1.26.10-bookworm
 GOLANG_LINT_IMAGE   := docker.io/golangci/golangci-lint:v2.2.2
 
 APP					:= ping
